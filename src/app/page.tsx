@@ -44,7 +44,7 @@ export default function Home() {
             i'm mostly interested in anything typescript (web & mobile), and
             also java.
           </p>
-          <p>i also like space explorations, computers and maybe finance.</p>
+          <p>i also like space explorations, computers, maybe finance and cool stuff.</p>
           <p>
             <a
               href="https://github.com/frimpsss"
