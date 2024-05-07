@@ -38,7 +38,7 @@ export default function Home() {
         />
         <div className="mt-4 font-light flex flex-col gap-2 text-[0.89rem]  lg:text-[1rem]">
           <p>
-            hi, i'm an engineer, <br /> Currently based in Ghana 🇬🇭.{" "}
+            hi, i'm an engineer, <br /> currently based in Ghana 🇬🇭.{" "}
           </p>
           <p>
             i'm mostly interested in anything typescript (web & mobile), and
