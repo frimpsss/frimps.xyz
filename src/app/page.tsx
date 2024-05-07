@@ -9,7 +9,7 @@ export default function Home() {
           href="/"
           className="text-[1.2rem] mb-2 text-primary-900 cursor-pointer"
         >
-          frimps.xyz
+          frimps
         </a>
         <nav className="flex pt-2 gap-4 text-[1rem] lg:justify-end">
           <Link href={"/"}>
