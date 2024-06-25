@@ -20,7 +20,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </Link>
         <div className="lg:text-right">
-          <h4 className="font-medium text-[1.7rem]">
+          <h4 className="font-medium text-[1.7rem] text-primary-950">
             {blog.frontmatter.subject}
           </h4>
           <p className="font-extralight text-[0.9rem] text-gray-900">
