@@ -1,35 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import frimps from "../assets/images/frimps.jpg";
+import AppLayout from "@/components/layouts/layout.main";
 export default function Home() {
   return (
-    <main className="px-4 py-8 lg:max-w-[600px] mx-auto">
-      <div className="flex flex-col divide-y-[1px] divide-primary-100 ">
-        <a
-          href="/"
-          className="text-[1.2rem] mb-2 text-primary-900 cursor-pointer"
-        >
-          frimps
-        </a>
-        <nav className="flex pt-2 gap-4 text-[1rem] lg:justify-end">
-          <Link href={"/"}>
-            <p className="hover:text-primary-900 duration-500  cursor-pointer ">
-              / me
-            </p>
-          </Link>
-          <Link href={"/"}>
-            <p className="hover:text-primary-900 duration-500  cursor-pointer ">
-              / work
-            </p>
-          </Link>
-          <Link href={"/"}>
-            <p className="hover:text-primary-900 duration-500  cursor-pointer ">
-              / writings
-            </p>
-          </Link>
-        </nav>
-      </div>
-
+    <AppLayout>
       <div className="my-6 flex flex-col lg:flex-row lg:gap-10 lg:my-8">
         <Image
           src={frimps}
@@ -44,7 +19,10 @@ export default function Home() {
             i'm mostly interested in anything typescript (web & mobile), and
             also java.
           </p>
-          <p>i also like space explorations, computers, maybe current affairs and cool stuff.</p>
+          <p>
+            i also like space explorations, computers, maybe current affairs and
+            cool stuff.
+          </p>
           <p>
             <a
               href="https://github.com/frimpsss"
@@ -111,6 +89,6 @@ export default function Home() {
           </li>
         </ul>
       </div>
-    </main>
+    </AppLayout>
   );
 }
