@@ -12,14 +12,14 @@ export default function Home() {
           className="w-[130px] lg:w-[150px] aspect-auto cursor-pointer"
         />
         <div className="mt-4 font-light flex flex-col gap-2 text-[0.89rem]  lg:text-[1rem]">
-          <p>
+          <p className="">
             hi, i'm an engineer, <br /> currently based in Ghana 🇬🇭.{" "}
           </p>
-          <p>
+          <p className="">
             i'm mostly interested in anything typescript (web & mobile), and
             also java.
           </p>
-          <p>
+          <p className="">
             i also like space explorations, computers, maybe current affairs and
             cool stuff.
           </p>
