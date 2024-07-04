@@ -14,7 +14,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
     <AppLayout>
       <div className="">
         <Link href={"/writings"}>
-          <div className="flex items-center hover:bg-gray-100 w-fit hover:gap-2 hover:px-1 py-1 cursor-pointer rounded-md my-6 duration:">
+          <div className="flex items-center hover:bg-gray-100 w-fit hover:gap-2 hover:px-1 py-1 cursor-pointer rounded-md my-6 duration-500">
             <ArrowLeftIcon height={18} />
             <p>back</p>
           </div>
