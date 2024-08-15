@@ -64,7 +64,7 @@ export default function Home() {
               <a
                 target="__blank"
                 href="https://www.dimba.app/"
-                className="text-primary-950 text-[1.1rem]"
+                className="text-primary-900 font-light text-[1.1rem]"
               >
                 Dimba.com
               </a>
@@ -78,12 +78,12 @@ export default function Home() {
               <a
                 target="__blank"
                 href="https://flow-your-mind.vercel.app/"
-                className="text-primary-950 text-[1.1rem]"
+                className="text-primary-900 font-light text-[1.1rem]"
               >
                 Flow your mind
               </a>
               <p className="font-light text-[0.89rem]">
-                Send and recieve anounymous messages.
+                Send and receive anonymous messages.
               </p>
             </div>
           </li>
