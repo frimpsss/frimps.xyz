@@ -1,5 +1,5 @@
 .markdown {
-    @apply font-sans text-gray-800 leading-relaxed text-sm;
+    @apply font-sans text-gray-800 leading-relaxed text-[0.9rem];
   }
   
   .markdown h1 {
@@ -11,7 +11,7 @@
   }
   
   .markdown p {
-    @apply my-4;
+    @apply my-4 font-normal;
   }
   
   .markdown code {

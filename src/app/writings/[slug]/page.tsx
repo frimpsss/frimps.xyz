@@ -14,13 +14,13 @@ const page = async ({ params }: { params: { slug: string } }) => {
     <AppLayout>
       <div className="">
         <Link href={"/writings"}>
-          <div className="flex items-center hover:bg-gray-100 w-fit hover:gap-2 hover:px-1 py-1 cursor-pointer rounded-md my-6 duration-500">
+          <div className="flex items-center hover:bg-gray-100 w-fit gap-2 hover:px-1 py-1 cursor-pointer rounded-md my-6 duration-500">
             <ArrowLeftIcon height={18} />
             <p>back</p>
           </div>
         </Link>
         <div className="lg:text-right">
-          <h4 className="font-medium text-[1.7rem] text-primary-950">
+          <h4 className="font-medium text-[1.7rem] text-primary-900">
             {blog.frontmatter.subject}
           </h4>
           <p className="font-extralight text-[0.9rem] text-gray-900">

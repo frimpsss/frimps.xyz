@@ -10,15 +10,15 @@ const page = async () => {
       <div className="my-6">
         {blogs.length == 0 && (
           <div>
-            <p>No posts🙃</p>
+            <p className="text-center">No posts 🙃</p>
           </div>
         )}
         {blogs.map((e, i) => {
           return (
-            <Link href={"writings/" + e.slug} key={i}>
+            <Link href={"writings/" + e.slug} key={e.slug}>
               <div className="cursor-pointer hover:scale-[1.02] duration-500">
                 <div className="flex justify-between">
-                  <p className="font-medium text-primary-950">{e.frontmatter.title}</p>
+                  <p className="font-normal text-primary-900">{e.frontmatter.title}</p>
                   <p className="font-extralight text-[0.8rem] ">
                     {e.frontmatter.date}
                   </p>
