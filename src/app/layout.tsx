@@ -3,10 +3,9 @@ import "./globals.css";
 import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "frimps.xyz",
+  title: "frimps",
   icons: "./favicon.ico",
-  description:
-    "Akwasi Ampomah Frimpong, a software developer and student. I do JavaScript, TypeScript for web and mobile development and also learning java",
+  description: "hey i'm frimps",
   keywords: [
     "Akwasi Ampomah Frimpong",
     "software developer",
@@ -24,13 +23,12 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "frimps.xyz",
-    description:
-      "Akwasi Ampomah Frimpong, a software developer and student. I do JavaScript, TypeScript for web and mobile development and also learning Java.",
+    title: "frimps",
+    description: "hey i'm frimps",
     url: "https://frimps.xyz",
     images: [
       {
-        url: "/images/portfolio-thumbnail.png",
+        url: "/images/frimps.png",
         width: 800,
         height: 600,
         alt: "Akwasi Ampomah Frimpong Portfolio Thumbnail",
