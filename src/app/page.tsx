@@ -20,8 +20,8 @@ export default function Home() {
             hi, i'm an engineer, <br /> currently based in Ghana 🇬🇭.{" "}
           </p>
           <p className="">
-            i'm mostly interested in anything typescript (web & mobile), and
-            also java.
+            i'm mostly interested in anything typescript (web & mobile), java
+            and also go.
           </p>
           <p className="">
             i also like space explorations, computers, maybe current affairs and

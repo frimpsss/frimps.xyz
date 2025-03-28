@@ -7,26 +7,26 @@ export const links = [
   },
   {
     title: "linkedin",
-    link: "https://www.linkedin.com/in/akwasi-ampomah-frimpong-760bb0206/",
+    link: "https://www.linkedin.com/in/akwasi-frimpong/",
   },
   {
     title: "X (twitter)",
-    link: "https://twitter.com/frimpssssss",
+    link: "https://twitter.com/akfrimpss",
   },
 ];
 
 export const featured_works: IFeaturedWork[] = [
-  {
-    name: "Dimba",
-    link: "https://www.dimba.app/",
-    description: (
-      <p className="font-light text-[0.89rem]">
-        An event discovery and ticketing application.
-        <br />
-        <LinkComponent link="https://www.discover.dimba.app/" title="WEB" />
-      </p>
-    ),
-  },
+  // {
+  //   name: "Dimba",
+  //   link: "https://www.dimba.app/",
+  //   description: (
+  //     <p className="font-light text-[0.89rem]">
+  //       An event discovery and ticketing application.
+  //       <br />
+  //       <LinkComponent link="https://www.discover.dimba.app/" title="WEB" />
+  //     </p>
+  //   ),
+  // },
   {
     name: "AquaTrack",
     link: "https://water-web-green.vercel.app/",
@@ -94,18 +94,18 @@ export const works = [
     company: "Access 89",
     dates: "September 2024 - present",
   },
-  {
-    title: "Software Engineer",
-    link: "https://dimba.app",
-    company: "DIMBA",
-    dates: "June 2023 - present",
-  },
-  {
-    title: "Backend Developer",
-    link: "https://zomujo.com/",
-    company: "Zomujo LLC",
-    dates: "June 2023 - September-2023",
-  },
+  // {
+  //   title: "Software Engineer",
+  //   link: "https://dimba.app",
+  //   company: "DIMBA",
+  //   dates: "June 2023 - present",
+  // },
+  // {
+  //   title: "Backend Developer",
+  //   link: "https://zomujo.com/",
+  //   company: "Zomujo LLC",
+  //   dates: "June 2023 - September-2023",
+  // },
 
   {
     title: "Software Developer",
