@@ -1,35 +1,79 @@
+import type { Metadata } from "next";
 import AppLayout from "@/components/layouts/layout.main";
-import { getBlogs } from "@/util/fetch-mdx";
+import {
+  formatFrontmatterDate,
+  formatReadTime,
+  getBlogs,
+  getFrontmatterLabel,
+} from "@/util/fetch-mdx";
+import { createPageMetadata } from "@/util/site";
 import Link from "next/link";
-import React from "react";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Notes",
+  description:
+    "Engineering notes, experiments, journal entries, and build write-ups from Akwasi Ampomah Frimpong.",
+  path: "/writings",
+  keywords: ["engineering notes", "software engineering blog", "experiments"],
+});
 
 const page = async () => {
   const blogs = await getBlogs();
+
   return (
     <AppLayout>
-      <div className="my-6">
-        {blogs.length == 0 && (
-          <div>
-            <p className="text-center">No posts 🙃</p>
+      <div className="stagger space-y-12">
+        <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end">
+          <div className="space-y-4">
+            <p className="section-eyebrow">notes</p>
+            <h1 className="section-title max-w-[12ch]">
+              notes on engineering, experiments, and whatever sticks.
+            </h1>
           </div>
-        )}
-        {blogs.map((e, i) => {
-          return (
-            <Link href={"writings/" + e.slug} key={e.slug}>
-              <div className="cursor-pointer hover:scale-[1.02] duration-500">
-                <div className="flex justify-between">
-                  <p className="font-normal text-primary-900">{e.frontmatter.title}</p>
-                  <p className="font-extralight text-[0.8rem] ">
-                    {e.frontmatter.date}
-                  </p>
-                </div>
-                <p className="font-normal text-[#888888] text-[0.9rem]">
-                  {e.frontmatter.subject}
-                </p>
-              </div>
-            </Link>
-          );
-        })}
+          <p className="page-copy lg:text-right">
+            short entries, build notes, and the occasional side thought.
+          </p>
+        </section>
+
+        <section className="border-t border-[color:var(--line)] pt-8">
+          {blogs.length === 0 && (
+            <div className="surface p-6 text-center small-copy">
+              nothing here yet.
+            </div>
+          )}
+
+          <div className="space-y-10">
+            {blogs.map((blog) => {
+              return (
+                <Link
+                  href={`/writings/${blog.slug}`}
+                  key={blog.slug}
+                  className="group block"
+                >
+                  <article className="surface border-b border-[color:var(--line)] pb-8 last:border-b-0 last:pb-0">
+                    <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_160px] md:items-start">
+                      <div className="space-y-3">
+                        <p className="section-eyebrow">
+                          {getFrontmatterLabel(blog.frontmatter.type)}
+                        </p>
+                        <h2 className="text-[1.6rem] leading-none tracking-[-0.05em]">
+                          {blog.frontmatter.title}
+                        </h2>
+                        <p className="small-copy max-w-[42rem]">
+                          {blog.frontmatter.subject}
+                        </p>
+                      </div>
+                      <div className="space-y-1 text-[0.78rem] uppercase tracking-[0.04em] text-[var(--muted)] md:pt-1 md:text-right">
+                        <p>{formatFrontmatterDate(blog.frontmatter.date)}</p>
+                        <p>{formatReadTime(blog.readTime)}</p>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
       </div>
     </AppLayout>
   );

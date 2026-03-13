@@ -1,17 +1,29 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { LinkComponent } from "./link";
 
 export interface props {
   name: string;
-  link: string;
+  link?: string;
   description: ReactNode;
 }
 const FeaturedWorkComponent = ({ description, link, name }: props) => {
   return (
-    <div className="cursor-pointer hover:pl-1 duration-300">
-      <LinkComponent title={name} link={link} extraStyles="text-[1.05rem] font-[400]" />
-      {description}
-    </div>
+    <article className="surface h-full">
+      {link ? (
+        <LinkComponent
+          title={name}
+          link={link}
+          extraStyles="inline-link text-[1.7rem] leading-none tracking-[-0.05em] border-transparent"
+        />
+      ) : (
+        <h3 className="text-[1.7rem] leading-none tracking-[-0.05em]">
+          {name}
+        </h3>
+      )}
+      <div className="mt-6 small-copy [&_a]:inline [&_a]:text-[var(--foreground)] [&_a]:underline [&_a]:decoration-[color:var(--line-strong)] [&_a]:decoration-[1px] [&_a]:underline-offset-[0.14em] [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-[var(--accent)] [&_a:hover]:decoration-[color:var(--accent)] [&_p]:!m-0 [&_p]:!text-[0.98rem] [&_p]:!leading-7 [&_p]:!text-[var(--muted)]">
+        {description}
+      </div>
+    </article>
   );
 };
 

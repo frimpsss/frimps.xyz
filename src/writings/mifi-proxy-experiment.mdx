@@ -1,0 +1,185 @@
+---
+title: "MiFi Proxy Experiment"
+date: "4th February 2026"
+subject: "A small idea that turned into a MiFi proxy, a Mac background service, and a cleaner way to check balance and SMS from anywhere."
+type: "experiment"
+---
+
+I only wanted one thing: to check my MiFi balance and SMS without being on the
+router's Wi-Fi.
+
+That should have stayed a tiny convenience problem. Instead it turned into a
+proxy server, a small macOS background service, and a public tunnel so I could
+hit it from anywhere. Very reasonable use of time.
+
+If you are not technical, here is the whole idea in one line: the router stays
+at home, my Mac talks to it for me, and I get a clean little API back on top of
+it.
+
+## The problem
+
+The ZTE MiFi already has a web interface, but it is the kind of interface that
+reminds you routers were built by people who do not believe in joy.
+
+It only works when you are connected to the device locally, and even then it
+takes more steps than it should just to check basic things like balance, signal
+status, or SMS. I wanted something simpler. Open one URL, get the data, move
+on with life.
+
+So the goal was not to build something big. It was just to put a nicer layer in
+front of an annoying device.
+
+## The first weird parts
+
+The router API was not hard in the fun way. It was hard in the "why are you
+like this?" way.
+
+SMS messages came back hex-encoded in UTF-16BE, so instead of readable text I
+was getting blobs like this:
+
+```text
+005000610079006D0065006E007400200066006F00720020004700480053...
+```
+
+So the proxy had to decode that before it became actual text again.
+
+The decoding part was small, but it was one of those details you have to get
+right early or everything else looks broken:
+
+```ts
+const decodeUtf16BeHex = (value: string) =>
+  Buffer.from(value, "hex").swap16().toString("utf16le");
+```
+
+Balance checks were worse. The router handled USSD in two steps: send the
+request, then wait a bit, then fetch the result separately. On top of that, it
+could get stuck if you did not cancel any old session first.
+
+So the real balance flow became:
+
+1. cancel anything hanging
+2. send the USSD code
+3. wait a little
+4. fetch the response
+5. decode whatever came back
+
+Not elegant, but very workable once I stopped expecting it to be normal.
+
+In code, the heart of it looked more like a small sequence than a single
+request:
+
+```ts
+await cancelUssd();
+await sendUssd("*124#");
+await wait(600);
+
+const raw = await getUssdResult();
+const balance = decodeUtf16BeHex(raw);
+```
+
+## The proxy itself
+
+Once I understood the messy bits, the actual proxy was straightforward.
+
+I wrote a tiny Node.js service that talks to the MiFi, handles the weird
+responses, and exposes a cleaner set of routes:
+
+- `/status`
+- `/sms`
+- `/balance`
+- `/health`
+
+That was the whole win. I no longer had to think in terms of router pages and
+random internal endpoints. I could just ask for what I wanted.
+
+One route was enough to show the shape of the whole thing:
+
+```ts
+app.get("/balance", async (_req, res) => {
+  const balance = await readBalance();
+  res.json({ balance });
+});
+```
+
+The nice part is that this also made it easy to use from other places. A web
+page can call it. An iPhone Shortcut can call it. A widget can call it. Once it
+became a small HTTP service, the rest got way easier.
+
+## The part that made it actually useful
+
+Getting the proxy working locally was only half the story. A local tool is nice
+for five minutes. After that you start asking the obvious question: can I reach
+this when I am not home?
+
+That is where the whole thing escalated.
+
+I packaged the service into a macOS binary because I did not want to keep a
+terminal tab alive forever. Then I set it up under `launchd` so it starts with
+the machine and stays in the background like it belongs there.
+
+After that, I used Cloudflare Tunnel to expose it without opening router ports
+or doing anything reckless to the home network.
+
+That changed the project from "cool local hack" into something I could
+actually rely on. I could check balance and SMS from my phone, from anywhere,
+without needing to first connect to the MiFi itself.
+
+## The small product moment in it
+
+This is the part I liked most.
+
+The raw technical problem was a router API. The real problem was friction.
+
+The original experience was: open the router UI, log in, tap around, wait for
+pages to load, maybe get stuck, maybe start over. The better experience was:
+hit one endpoint and get the answer.
+
+That is such a small difference on paper, but it changes how often you are even
+willing to use the thing.
+
+So even though this was a side experiment, it still felt like product work. The
+code mattered, but the sharper part was reducing the whole experience down to
+something obvious.
+
+## What was annoying
+
+A few things stood out:
+
+- routers love returning data in inconvenient formats
+- USSD behaves like a tiny state machine with trust issues
+- background services on a laptop are only as reliable as your sleep settings
+- the public-internet version immediately turns "nice hack" into "okay now
+  think about auth"
+
+None of these were deal-breakers. They were just the usual reminder that the
+last twenty percent of a useful tool is where all the annoying details live.
+
+## What I ended up with
+
+By the end, the setup was simple from my side:
+
+- the MiFi stays on its own network
+- the Mac runs the proxy in the background
+- Cloudflare Tunnel gives it a public address
+- my phone hits the cleaned-up endpoints
+
+That is it. No full dashboard, no giant interface, just a thin useful layer
+over a device that did not make this easy by itself.
+
+## Future goal
+
+The part I have not done yet is the ESP32 version.
+
+I still want to try moving the same idea onto a much smaller device and see how
+far I can push it without leaning on Node and macOS for comfort. Not because it
+is necessary, just because it would be funny if the whole thing ended up living
+on something that small.
+
+## Closing
+
+I liked this one because it started from a very ordinary annoyance and ended up
+touching a lot of layers: device APIs, encoding, background services, tunneling,
+and a little bit of product thinking.
+
+It was slightly unnecessary, definitely useful, and exactly the kind of project
+that keeps growing just because the next improvement feels too close to ignore.

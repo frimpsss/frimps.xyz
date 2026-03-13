@@ -1,0 +1,127 @@
+---
+title: "Charge Express, UI v2, and a Backend Speed Pass"
+date: "13th March 2026"
+subject: "A quick note on Charge Express, the UI v2 work, and a deeper backend update around service bus flow, meter values, and station-level scaling."
+type: "journal entry"
+---
+
+Lately I have been spending time on Charge Express from two sides at once:
+reworking the UI into a cleaner v2, and pushing a much deeper backend update
+underneath it.
+
+[Charge Express](https://chargeexpressltd.com/) is an EV charging product built
+around helping drivers find and use chargers more easily, while giving the team
+better visibility into stations, chargers, sessions, and the day to day
+operational side behind them. On the surface, that is the app and the product
+experience. Underneath it, there is a lot of backend movement around OCPP
+traffic, station events, session state, commands, and meter values.
+
+That combination has made this stretch interesting. The UI work makes the
+product easier to move through. The backend work makes the product feel more
+stable and responsive once real charger activity starts flowing through it.
+Both matter.
+
+## UI v2
+
+The UI work has not been about making things look different just for the sake
+of it. The point has been to make the product easier to read, easier to move
+through, and easier to trust when someone is actually trying to get something
+done.
+
+I have been tightening layouts, reducing visual noise, and rethinking some of
+the flows so the important parts show up faster. Less hunting around. Less
+guessing what matters on a screen. Less of that feeling where a product works,
+but still makes you do too much.
+
+Charge Express sits in a space where clarity matters a lot. If someone is
+checking charger state, session information, availability, or any part of the
+operational side, the UI should feel calm and direct. So v2 has mostly been
+about getting closer to that.
+
+It is still the same product, but the goal is a sharper version of it. Cleaner
+structure, better hierarchy, and fewer places where the interface gets in the
+way.
+
+## Backend performance work
+
+The backend side has been more than just a small performance tune-up. It has
+been a proper service update.
+
+Before this pass, some of the pain was already showing up in the product.
+Station activity was getting heavier than it should, some charger and session
+updates were taking too long to settle through the system, and meter values
+were becoming the kind of workload that could quietly turn storage into a drag.
+On the operational side, that means slower movement, noisier processing, and a
+harder time reasoning about where pressure is building.
+
+One big part of the fix was bringing in
+[Azure Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
+so more of the work could move through the system in a cleaner way. That helped
+take pressure off direct service-to-service handling and made the flow of
+charger and station events feel less tangled.
+
+Another major part was meter values. That data tends to pile up quickly, and it
+was becoming the kind of workload that did not really belong where it was. So I
+have been involved in moving meter values storage from SQL into
+[Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/overview),
+with the important part being that the move could not cost us data on the way
+over.
+
+That meant treating the migration carefully, not like a casual storage swap.
+The point was not just "move it," but "move it cleanly, keep the data intact,
+and come out with something that fits the shape and volume of the workload
+better than before." Losing history was not an option, so the migration had to
+land without data loss while still giving us a storage model that made more
+sense for high-volume meter traffic.
+
+I have also been splitting the service bus flow per station, which has been one
+of the more important structural changes in the backend work. Instead of having
+everything feel too shared and too crowded, station-level separation makes the
+event flow easier to reason about, easier to isolate, and easier to scale
+without one noisy station making life harder for the rest.
+
+That part matters more than it sounds. When too much station traffic shares the
+same path, you start feeling it everywhere else. Updates lag, debugging gets
+messier, and one busy station can create noise that has nothing to do with the
+others. Splitting service bus handling per station makes the backend feel more
+intentional and gives each station more breathing room.
+
+So the backend update has really been a mix of three things working together:
+
+- bringing in service bus support more properly
+- moving high-volume meter values from SQL to NoSQL with no data loss
+- splitting service bus handling per station to make processing cleaner
+
+That kind of work is not always flashy, but it changes the feel of the whole
+system. It reduces drag where the product is busiest, and it gives the platform
+more room to handle charger activity without everything feeling heavier than it
+should.
+
+## The useful part
+
+I think this is the bit I keep coming back to: performance work and interface
+work are not separate in practice.
+
+You can make the UI cleaner, but if the data arrives late, the product still
+feels rough. You can make the service faster, but if the screen is noisy, the
+product still feels harder than it should. So this stretch on Charge Express
+has been about improving both at the same time.
+
+That has meant thinking less in terms of isolated tasks and more in terms of
+overall experience. What does the user need to see first? What can wait? What
+is slowing the path down? What is adding noise without adding value?
+
+Those are the questions that have shaped most of the work.
+
+## Where it is heading
+
+Right now, the direction feels good.
+
+UI v2 is making the product cleaner and easier to move through, while the
+backend work is making the system stronger underneath it. There is still more
+to refine, but the shape of the next version is clearer now than it was before.
+
+This has been one of those stretches where the changes are spread across a lot
+of small decisions, but together they push the product forward in a real way.
+
+More on it once the next round settles.

@@ -1,39 +1,120 @@
 .markdown {
-    @apply font-sans text-gray-800 leading-relaxed text-[0.9rem];
-  }
-  
-  .markdown h1 {
-    @apply text-3xl font-bold mt-6 mb-4;
-  }
-  
-  .markdown h2 {
-    @apply text-2xl font-semibold mt-5 mb-3;
-  }
-  
-  .markdown p {
-    @apply my-4 font-normal;
-  }
-  
-  .markdown code {
-    @apply bg-gray-200 px-1.5 py-0.5 rounded text-sm font-mono;
-  }
-  
-  .markdown pre {
-    @apply bg-gray-200 p-4 rounded overflow-x-auto;
-  }
-  
-  .markdown a {
-    @apply text-blue-500 underline;
-  }
-  
-  .markdown ul {
-    @apply list-disc list-inside my-4;
-  }
-  
-  .markdown ol {
-    @apply list-decimal list-inside my-4;
-  }
-  
-  .markdown li {
-    @apply my-1 ml-5;
-  }
+  color: var(--foreground);
+  font-size: 1.02rem;
+  line-height: 1.95;
+}
+
+.markdown > *:first-child {
+  margin-top: 0;
+}
+
+.markdown > *:last-child {
+  margin-bottom: 0;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.markdown h1 {
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+}
+
+.markdown h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.markdown h3 {
+  font-size: 1.55rem;
+}
+
+.markdown h4 {
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown blockquote,
+.markdown pre {
+  margin: 1.3rem 0;
+}
+
+.markdown p,
+.markdown li {
+  color: var(--muted);
+}
+
+.markdown a {
+  display: inline;
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+  transition:
+    color 220ms ease,
+    text-decoration-color 220ms ease;
+}
+
+.markdown a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: 1.3rem;
+}
+
+.markdown li {
+  padding-left: 0.2rem;
+  margin: 0.6rem 0;
+}
+
+.markdown strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.markdown code {
+  padding: 0.18rem 0.4rem;
+  background: rgba(22, 18, 13, 0.06);
+  font-family:
+    "SFMono-Regular", "SFMono", "Menlo", "Monaco", "Consolas",
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.92rem;
+}
+
+.markdown pre {
+  overflow-x: auto;
+  padding: 1.3rem 1.4rem;
+  border: 1px solid var(--line);
+  background: rgba(22, 18, 13, 0.04);
+}
+
+.markdown pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.markdown blockquote {
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--line-strong);
+  color: var(--foreground);
+}
+
+.markdown hr {
+  margin: 2.4rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}

@@ -1,4 +1,3 @@
-import React from "react";
 interface props {
   title: string;
   link: string;
@@ -10,7 +9,7 @@ export const LinkComponent = ({ title, link, extraStyles = "" }: props) => {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className={`text-primary-900 ${extraStyles} hover:underline duration-300`}
+      className={`transition-colors duration-200  ${extraStyles}`.trim()}
     >
       {title}
     </a>

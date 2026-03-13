@@ -1,38 +1,218 @@
-@font-face {
-  font-family: "custom";
-  src: url("/assets/fonts/BagossStandardTRIAL-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
-@font-face {
-  font-family: "custom";
-  src: url("/assets/fonts/BagossStandardTRIAL-Light.ttf") format("truetype");
-  font-weight: 300;
-}
-@font-face {
-  font-family: "custom";
-  src: url("/assets/fonts/BagossStandardTRIAL-Medium.ttf") format("truetype");
-  font-weight: 500;
-}
-@font-face {
-  font-family: "custom";
-  src: url("/assets/fonts/BagossStandardTRIAL-Regular.ttf") format("truetype");
-  font-weight: 400;
-}
-@font-face {
-  font-family: "custom";
-  src: url("/assets/fonts/BagossStandardTRIAL-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-}
-@font-face {
-  font-family: "custom";
-  src: url("/assets/fonts/BagossStandardTRIAL-Thin.ttf") format("truetype");
-  font-weight: 100;
-}
-/* @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: #fbfbf9;
+  --background-strong: transparent;
+  --foreground: #101010;
+  --muted: #666666;
+  --line: rgba(16, 16, 16, 0.08);
+  --line-strong: rgba(16, 16, 16, 0.18);
+  --accent: #101010;
+  --accent-soft: rgba(16, 16, 16, 0.05);
+}
+
 * {
-  font-family: "custom", serif;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-bagoss), Georgia, serif;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+::selection {
+  color: #f8f3eb;
+  background: var(--accent);
+}
+
+.page-shell {
+  width: min(1120px, calc(100vw - 1rem));
+  margin: 0 auto;
+  padding: 0.85rem 0 2.4rem;
+}
+
+.site-chrome {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.site-chrome::before {
+  display: none;
+}
+
+.page-section {
+  padding: 1.45rem 0.95rem 2rem;
+}
+
+.surface {
+  background: var(--background-strong);
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  color: var(--muted);
+  opacity: 0.9;
+}
+
+.page-title {
+  font-size: clamp(2.35rem, 10vw, 6.2rem);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.page-copy {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.7vw, 1.12rem);
+  line-height: 1.8;
+}
+
+.small-copy {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-bottom: 0.01rem;
+  border-bottom: 1px solid var(--line-strong);
+  transition:
+    color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.inline-link:hover {
+  color: var(--foreground);
+  border-color: var(--foreground);
+  transform: translateY(-1px);
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: 0.08rem;
+  color: var(--muted);
+  transition: color 220ms ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--foreground);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms ease;
+}
+
+.nav-link[data-active="true"],
+.nav-link:hover {
+  color: var(--foreground);
+}
+
+.nav-link[data-active="true"]::after,
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.fade-in {
+  animation: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.stagger > * {
+  opacity: 0;
+  animation: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.stagger > :nth-child(1) {
+  animation-delay: 80ms;
+}
+
+.stagger > :nth-child(2) {
+  animation-delay: 160ms;
+}
+
+.stagger > :nth-child(3) {
+  animation-delay: 240ms;
+}
+
+.stagger > :nth-child(4) {
+  animation-delay: 320ms;
+}
+
+.stagger > :nth-child(5) {
+  animation-delay: 400ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .page-shell {
+    width: min(1120px, calc(100vw - 3rem));
+    padding: 1.5rem 0 4rem;
+  }
+
+  .page-section {
+    padding: 2.25rem 2rem 3rem;
+  }
+
+  .page-title {
+    line-height: 0.92;
+  }
 }

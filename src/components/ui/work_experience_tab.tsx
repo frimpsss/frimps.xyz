@@ -1,20 +1,49 @@
-import React from "react";
 import { LinkComponent } from "./link";
 interface props {
   title: string;
-  link: string;
+  link?: string;
   company: string;
+  location: string;
   dates: string;
+  summary: string;
 }
-const WorkExperience = ({ title, link, company, dates }: props) => {
+const WorkExperience = ({
+  title,
+  link,
+  company,
+  location,
+  dates,
+  summary,
+}: props) => {
+  const [startDate, endDate] = dates.split(" - ");
+
   return (
-    <div className="cursor-pointer  hover:translate-x-1 duration-500">
-      <LinkComponent title={company} link={link} extraStyles="text-[1.1rem]" />
-      <div className="flex items-center justify-between text-[0.95rem] gap-4">
-        <p className="font-normal text-left">{title}</p>
-        <p className="font-light text-gray-900 text-right ">{dates}</p>
+    <article className="surface py-5 md:py-6">
+      <div className="grid gap-5 md:grid-cols-[180px_minmax(0,1fr)] md:items-start">
+        <div className="text-[0.75rem] uppercase tracking-[0.04em] text-[var(--muted)]">
+          <p>{startDate}</p>
+          <p>{endDate ?? ""}</p>
+        </div>
+        <div className="space-y-3">
+          {link ? (
+            <LinkComponent
+              title={company}
+              link={link}
+              extraStyles="inline-link text-[1.55rem] leading-none tracking-[-0.05em] border-transparent"
+            />
+          ) : (
+            <h2 className="text-[1.55rem] leading-none tracking-[-0.05em]">
+              {company}
+            </h2>
+          )}
+          <p className="small-copy text-[1rem] text-[var(--foreground)]">
+            {title}
+          </p>
+          <p className="small-copy">{location}</p>
+          <p className="small-copy max-w-[42rem]">{summary}</p>
+        </div>
       </div>
-    </div>
+    </article>
   );
 };
 

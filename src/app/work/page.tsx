@@ -1,15 +1,39 @@
+import type { Metadata } from "next";
 import AppLayout from "@/components/layouts/layout.main";
 import WorkExperience from "@/components/ui/work_experience_tab";
+import { createPageMetadata } from "@/util/site";
 import { works } from "@/util/misc";
-import React from "react";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Doings",
+  description:
+    "Current role, earlier teams, and selected work across product systems, fintech, OTT, lending, and EV charging software.",
+  path: "/work",
+  keywords: ["work experience", "career timeline", "engineering work"],
+});
 
 const page = () => {
   return (
     <AppLayout>
-      <div className="pt-6 flex flex-col gap-3">
-        {works.map((e) => {
-          return <WorkExperience {...e} key={e.company} />;
-        })}
+      <div className="stagger space-y-12">
+        <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end">
+          <div className="space-y-4">
+            <p className="section-eyebrow">doings</p>
+            <h1 className="section-title max-w-[12ch]">
+              what i am doing now and what i have done so far.
+            </h1>
+          </div>
+          <p className="page-copy lg:text-right">
+            current role, earlier teams, and the kind of things i have been
+            doing. i will flesh this out more later.
+          </p>
+        </section>
+
+        <section className="space-y-4 border-t border-[color:var(--line)] pt-8">
+          {works.map((work) => {
+            return <WorkExperience {...work} key={work.company} />;
+          })}
+        </section>
       </div>
     </AppLayout>
   );

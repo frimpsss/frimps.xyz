@@ -1,50 +1,95 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { defaultKeywords, defaultOgImage, siteConfig } from "@/util/site";
 import "./globals.css";
-import Head from "next/head";
+
+const bagoss = localFont({
+  src: [
+    {
+      path: "../../public/assets/fonts/BagossStandardTRIAL-Thin.ttf",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/BagossStandardTRIAL-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/BagossStandardTRIAL-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/BagossStandardTRIAL-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/BagossStandardTRIAL-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/BagossStandardTRIAL-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-bagoss",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "frimps",
-  icons: "./favicon.ico",
-  description: "hey i'm frimps",
-  keywords: [
-    "Akwasi Ampomah Frimpong",
-    "software developer",
-    "JavaScript",
-    "TypeScript",
-    "Java",
-    "web development",
-    "mobile development",
-    "Ghana",
-    "computer engineer",
-    "frimpsssssss",
-    "frimpszy",
-    "ampomah",
-    "frimps",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: defaultKeywords,
+  authors: [
+    {
+      name: siteConfig.fullName,
+      url: siteConfig.url,
+    },
   ],
+  creator: siteConfig.fullName,
+  publisher: siteConfig.fullName,
+  applicationName: siteConfig.siteName,
+  alternates: {
+    canonical: siteConfig.url,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/assets/icons/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
-    title: "frimps",
-    description: "hey i'm frimps",
-    url: "https://frimps.xyz",
-    images: [
-      {
-        url: "/images/frimps.png",
-        width: 800,
-        height: 600,
-        alt: "Akwasi Ampomah Frimpong Portfolio Thumbnail",
-      },
-    ],
-    locale: "en_US",
-    siteName: "frimps.xyz",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    images: [defaultOgImage],
+    locale: siteConfig.locale,
+    siteName: siteConfig.siteName,
   },
   twitter: {
     card: "summary_large_image",
-    site: "@frimpssssss",
-    creator: "@frimpssssss",
-    title: "frimps.xyz",
-    description:
-      "Akwasi Ampomah Frimpong, a software developer and student. I do JavaScript, TypeScript for web and mobile development and also learning Java.",
-    images: "/favicon.ico",
+    site: siteConfig.twitter,
+    creator: siteConfig.twitter,
+    title: siteConfig.siteName,
+    description: siteConfig.description,
+    images: [defaultOgImage.url],
   },
 };
 
@@ -54,37 +99,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Akwasi Ampomah Frimpong, a software developer and student. I do JavaScript, TypeScript for web and mobile development and also learning Java."
-        />
-        <meta
-          name="keywords"
-          content="Akwasi Ampomah Frimpong, software developer, JavaScript, TypeScript, Java, web development, mobile development, Ghana, computer engineer, frimpsssssss, frimpszy, ampomah"
-        />
-
-        <meta property="og:title" content="frimps.xyz" />
-        <meta
-          property="og:description"
-          content="Akwasi Ampomah Frimpong, a software developer and student. I do JavaScript, TypeScript for web and mobile development and also learning Java."
-        />
-        <meta property="og:image" content="/favicon.ico" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://frimps.xzy" />
-        <meta property="og:country-name" content="Ghana" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@frimpssssss" />
-        <meta name="twitter:creator" content="@@frimpssssss" />
-        <meta name="twitter:title" content="frimps.xyz" />
-        <meta
-          name="twitter:description"
-          content="Akwasi Ampomah Frimpong, a software developer and student. I do JavaScript, TypeScript for web and mobile development and also learning Java."
-        />
-        <meta name="twitter:image" content="./favicon.ico" />
-      </Head>
+    <html lang="en" className={bagoss.variable}>
       <body>{children}</body>
     </html>
   );
