@@ -64,15 +64,33 @@ Another major part was meter values. That data tends to pile up quickly, and it
 was becoming the kind of workload that did not really belong where it was. So I
 have been involved in moving meter values storage from SQL into
 [Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/overview),
-with the important part being that the move could not cost us data on the way
-over.
+but the interesting bit was not just the database change itself. It was making
+that switch without turning it into one giant risky migration exercise.
 
-That meant treating the migration carefully, not like a casual storage swap.
-The point was not just "move it," but "move it cleanly, keep the data intact,
-and come out with something that fits the shape and volume of the workload
-better than before." Losing history was not an option, so the migration had to
-land without data loss while still giving us a storage model that made more
-sense for high-volume meter traffic.
+Instead of treating it like a big one-off data move, I worked on changing the
+storage path around meter values so the system could move toward the new model
+cleanly. That meant shifting the high-volume meter workload into a store that
+fit it better, while keeping existing history intact and avoiding the kind of
+disruptive migration that usually comes with this sort of change.
+
+The shape of it was pretty simple in principle: introduce a cutoff point,
+write newer meter values to Cosmos DB from that point forward, and leave the
+older records where they already were instead of forcing a full migration just
+to say everything lived in one place.
+
+That meant the real work shifted to the read path. Legacy data still had to be
+available, but I did not want clients needing fresh endpoints or a second way
+to ask for the same thing. So the backend kept the same contract and handled
+the storage split internally. If the request touched older records, it could
+pull from SQL. If it touched newer records, it could pull from Cosmos. If a
+range crossed both sides of the cutoff, the service stitched the result
+together and returned it in the same shape as before.
+
+That was important because losing history was not an option, and neither was
+slowing the system down further just to change database types. The goal was to
+change the storage model without creating a second problem in the process. So
+the win was not only moving from SQL to NoSQL, but doing it in a way that kept
+the product steady while the backend model changed underneath it.
 
 I have also been splitting the service bus flow per station, which has been one
 of the more important structural changes in the backend work. Instead of having
@@ -86,11 +104,27 @@ messier, and one busy station can create noise that has nothing to do with the
 others. Splitting service bus handling per station makes the backend feel more
 intentional and gives each station more breathing room.
 
-So the backend update has really been a mix of three things working together:
+I also spent time making the system much easier to watch. Part of that was
+adding more serious logging around the flow of charger, station, and service
+events. Instead of leaving those logs stuck close to the producing service, I
+had them written onto the bus and picked up by another service that pushes them
+into NoSQL. That made the logging path more useful without loading the core
+service with one more responsibility.
+
+That helped in two ways. First, it made it easier to trace what actually
+happened around a charger, a station, or a session when something looked off.
+Second, it created a better base for alerts. Once the signals were landing in a
+cleaner way, I could add alerts around failures, stalled flows, and the sort of
+conditions that should show up early instead of only after someone feels the
+problem from the product side.
+
+So the backend update has really been a mix of four things working together:
 
 - bringing in service bus support more properly
-- moving high-volume meter values from SQL to NoSQL with no data loss
+- switching high-volume meter values from SQL to NoSQL without a risky bulk
+  migration
 - splitting service bus handling per station to make processing cleaner
+- adding stronger logging and alerts through a bus-to-consumer flow into NoSQL
 
 That kind of work is not always flashy, but it changes the feel of the whole
 system. It reduces drag where the product is busiest, and it gives the platform
