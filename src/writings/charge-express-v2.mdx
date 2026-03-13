@@ -60,6 +60,30 @@ so more of the work could move through the system in a cleaner way. That helped
 take pressure off direct service-to-service handling and made the flow of
 charger and station events feel less tangled.
 
+Part of the deeper problem was how meter values were being written. There were
+too many repeated writes landing in MySQL, and that pressure was spiking the
+database server's compute hard enough to make it hang. Once that happened, the
+effect was ugly: delayed processing, downtime, and some data getting lost in
+the middle of the mess.
+
+The service bus helped with the loss side of that because events could be held
+and processed more safely instead of disappearing when the system got rough.
+But it did not magically fix the database pressure by itself. The backlog could
+survive, but the write target was still getting hammered, resources were still
+spiking, and the whole thing was drifting further away from real time than it
+should.
+
+So part of the work became reducing how hard we were hitting the database in
+the first place. I wrote custom Prisma adapters to manage database connections
+more carefully, which helped cut down waste around connection handling and made
+the write path less careless with resources.
+
+After that, I moved meter values away from a more repetitive write pattern and
+toward bulk writes, so we were no longer paying the full cost of every single
+value like it had to stand alone. That helped bring the write pressure down and
+made the path more stable, but it also made the final conclusion clearer: this
+workload simply did not belong in the same SQL shape long term.
+
 Another major part was meter values. That data tends to pile up quickly, and it
 was becoming the kind of workload that did not really belong where it was. So I
 have been involved in moving meter values storage from SQL into
@@ -121,6 +145,7 @@ problem from the product side.
 So the backend update has really been a mix of four things working together:
 
 - bringing in service bus support more properly
+- reducing MySQL pressure with better connection handling and bulk writes
 - switching high-volume meter values from SQL to NoSQL without a risky bulk
   migration
 - splitting service bus handling per station to make processing cleaner
