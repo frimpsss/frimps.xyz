@@ -24,8 +24,8 @@ const page = () => {
             </h1>
           </div>
           <p className="page-copy lg:text-right">
-            current role, earlier teams, and the kind of things i have been
-            doing. i will flesh this out more later.
+            current role, earlier teams, and a few of the products and systems
+            i have worked on.
           </p>
         </section>
 
