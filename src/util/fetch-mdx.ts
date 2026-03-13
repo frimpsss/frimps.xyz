@@ -74,7 +74,10 @@ export async function getBlogBySlug(slug: string) {
     hidden?: boolean;
   }>({
     source: fileContent,
-    options: { parseFrontmatter: true },
+    options: {
+      parseFrontmatter: true,
+      blockJS: true,
+    },
   });
   return {
     frontmatter,

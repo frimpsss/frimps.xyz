@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.4",
-    "next": "13.5.5",
-    "react": "^18",
-    "react-dom": "^18",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.1",
     "@types/mdx": "^2.0.13",
-    "next-mdx-remote": "^4.4.1"
+    "next": "13.5.5",
+    "next-mdx-remote": "^6.0.0",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
