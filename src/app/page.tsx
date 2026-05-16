@@ -149,7 +149,7 @@ export default function Home() {
             <div className="mt-6 flex items-start justify-between gap-6 border-t border-[color:var(--line)] pt-5">
               <div>
                 <p className="section-eyebrow">base</p>
-                <p className="mt-2 text-[1.2rem] tracking-[-0.04em]">ghana</p>
+                <p className="mt-2 text-[1.2rem] tracking-[-0.04em]">🇬🇭</p>
               </div>
               <div className="text-right">
                 <p className="section-eyebrow">focus</p>

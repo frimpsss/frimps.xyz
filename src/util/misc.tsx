@@ -17,17 +17,29 @@ export const links = [
 
 export const featured_works: IFeaturedWork[] = [
   {
-    name: "Yen Kor",
-    link: "#",
+    name: "GZY",
+    link: "https://github.com/frimpsss/gzy",
     description: (
       <p>
-        Yen Kor (meaning: Lets Go) is a ride pooling app for finding, joining,
-        and managing shared rides without the usual back and forth.
+        GZY is a tiny cli tool written with Go to manage multiple github account
+        on one device
         <br />
-        work in progress.
+        <LinkComponent link="https://github.com/frimpsss/gzy" title="cli" />
       </p>
     ),
   },
+  // {
+  //   name: "Yen Kor",
+  //   link: "#",
+  //   description: (
+  //     <p>
+  //       Yen Kor (meaning: Lets Go) is a ride pooling app for finding, joining,
+  //       and managing shared rides without the usual back and forth.
+  //       <br />
+  //       work in progress.
+  //     </p>
+  //   ),
+  // },
   // {
   //   name: "Dimba",
   //   link: "https://www.dimba.app/",
