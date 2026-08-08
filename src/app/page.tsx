@@ -73,7 +73,7 @@ export default function Home() {
                 </p>
                 <p>
                   i like staying close to the whole thing, from direction to
-                  implementation to shipping, especially across{" "}
+                  implementation to shipping, especially across areas of{" "}
                   <span className="text-[var(--foreground)]">finance</span>,{" "}
                   <span className="text-[var(--foreground)]">business automation</span>,{" "}
                   <span className="text-[var(--foreground)]">
