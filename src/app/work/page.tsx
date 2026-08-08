@@ -22,13 +22,13 @@ const page = () => {
               what i am doing now and what i have done so far.
             </h1>
           </div>
-          <p className="page-copy lg:text-right">
+          {/*<p className="page-copy lg:text-right sm:hidden lg:block">
             current role, earlier teams, and a few of the products and systems
             i have worked on.
-          </p>
+          </p>*/}
         </section>
 
-        <section className="space-y-4 border-t border-[color:var(--line)] pt-8">
+        <section className="space-y-4 ">
           {works.map((work) => {
             return <WorkExperience {...work} key={work.company} />;
           })}

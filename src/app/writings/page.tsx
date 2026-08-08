@@ -29,12 +29,12 @@ const page = async () => {
               notes on engineering, experiments, and whatever sticks.
             </h1>
           </div>
-          <p className="page-copy lg:text-right">
+          {/*<p className="page-copy lg:text-right">
             short entries, build notes, and the occasional side thought.
-          </p>
+          </p>*/}
         </section>
 
-        <section className="border-t border-[color:var(--line)] pt-8">
+        <section className="">
           {blogs.length === 0 && (
             <div className="surface p-6 text-center small-copy">
               nothing here yet.
@@ -52,9 +52,9 @@ const page = async () => {
                   <article className="surface border-b border-[color:var(--line)] pb-8 last:border-b-0 last:pb-0">
                     <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_160px] md:items-start">
                       <div className="space-y-3">
-                        <p className="section-eyebrow">
+                        {/*<p className="section-eyebrow">
                           {getFrontmatterLabel(blog.frontmatter.type)}
-                        </p>
+                        </p>*/}
                         <h2 className="text-[1.3rem] leading-tight tracking-[-0.04em]">
                           {blog.frontmatter.title}
                         </h2>

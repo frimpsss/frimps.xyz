@@ -145,10 +145,10 @@ export default function Home() {
                 a few things i helped shape and ship.
               </h2>
             </div>
-            <p className="small-copy lg:text-right">
+            {/*<p className="small-copy lg:text-right">
               projects where product thinking, systems, and engineering had to
               come together.
-            </p>
+            </p>*/}
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
