@@ -74,17 +74,17 @@ export default function Home() {
                 <p>
                   i like staying close to the whole thing, from direction to
                   implementation to shipping, especially across areas of{" "}
-                  <span className="text-[var(--foreground)]">finance</span>,{" "}
-                  <span className="text-[var(--foreground)]">business automation</span>,{" "}
-                  <span className="text-[var(--foreground)]">
+                  <span className="text-[var(--foreground)] cursor-pointer">finance</span>,{" "}
+                  <span className="text-[var(--foreground)] cursor-pointer">business automation</span>,{" "}
+                  <span className="text-[var(--foreground)] cursor-pointer">
                     logistics
                   </span>
                   ,{" "}
-                  <span className="text-[var(--foreground)]">
+                  <span className="text-[var(--foreground)] cursor-pointer">
                    streaming services
                   </span>
                   , and{" "}
-                  <span className="text-[var(--foreground)]">
+                  <span className="text-[var(--foreground)] cursor-pointer">
                     EV OCPP technology
                   </span>
                   .
