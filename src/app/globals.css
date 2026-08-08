@@ -33,7 +33,9 @@ body {
   min-height: 100vh;
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-bagoss), Georgia, serif;
+  font-family:
+    var(--font-sora), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
   text-rendering: optimizeLegibility;
 }
 
@@ -82,7 +84,7 @@ img {
 
 .section-eyebrow {
   display: inline-block;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   line-height: 1;
   color: var(--muted);
@@ -90,26 +92,26 @@ img {
 }
 
 .page-title {
-  font-size: clamp(2.35rem, 10vw, 6.2rem);
-  line-height: 0.94;
-  letter-spacing: -0.06em;
-}
-
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(1.95rem, 7vw, 4.4rem);
   line-height: 0.98;
   letter-spacing: -0.05em;
 }
 
+.section-title {
+  font-size: clamp(1.45rem, 3vw, 1.95rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
 .page-copy {
   color: var(--muted);
-  font-size: clamp(1rem, 1.7vw, 1.12rem);
-  line-height: 1.8;
+  font-size: clamp(0.94rem, 1.2vw, 1rem);
+  line-height: 1.75;
 }
 
 .small-copy {
   color: var(--muted);
-  font-size: 0.94rem;
+  font-size: 0.86rem;
   line-height: 1.7;
 }
 
@@ -129,6 +131,28 @@ img {
   color: var(--foreground);
   border-color: var(--foreground);
   transform: translateY(-1px);
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  color: var(--muted);
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.icon-link:hover {
+  color: var(--foreground);
+  transform: translateY(-1px);
+}
+
+.icon-link svg {
+  width: 1.05rem;
+  height: 1.05rem;
 }
 
 .nav-link {
@@ -161,47 +185,6 @@ img {
   transform: scaleX(1);
 }
 
-.fade-in {
-  animation: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-.stagger > * {
-  opacity: 0;
-  animation: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-.stagger > :nth-child(1) {
-  animation-delay: 80ms;
-}
-
-.stagger > :nth-child(2) {
-  animation-delay: 160ms;
-}
-
-.stagger > :nth-child(3) {
-  animation-delay: 240ms;
-}
-
-.stagger > :nth-child(4) {
-  animation-delay: 320ms;
-}
-
-.stagger > :nth-child(5) {
-  animation-delay: 400ms;
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (min-width: 768px) {
   .page-shell {
     width: min(1120px, calc(100vw - 3rem));
@@ -213,6 +196,6 @@ img {
   }
 
   .page-title {
-    line-height: 0.92;
+    line-height: 0.96;
   }
 }

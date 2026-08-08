@@ -20,7 +20,7 @@ const WorkExperience = ({
   return (
     <article className="surface py-5 md:py-6">
       <div className="grid gap-5 md:grid-cols-[180px_minmax(0,1fr)] md:items-start">
-        <div className="text-[0.75rem] uppercase tracking-[0.04em] text-[var(--muted)]">
+        <div className="text-[0.7rem] uppercase tracking-[0.04em] text-[var(--muted)]">
           <p>{startDate}</p>
           <p>{endDate ?? ""}</p>
         </div>
@@ -29,14 +29,14 @@ const WorkExperience = ({
             <LinkComponent
               title={company}
               link={link}
-              extraStyles="inline-link text-[1.55rem] leading-none tracking-[-0.05em] border-transparent"
+              extraStyles="inline-link text-[1.25rem] leading-tight tracking-[-0.04em] border-transparent"
             />
           ) : (
-            <h2 className="text-[1.55rem] leading-none tracking-[-0.05em]">
+            <h2 className="text-[1.25rem] leading-tight tracking-[-0.04em]">
               {company}
             </h2>
           )}
-          <p className="small-copy text-[1rem] text-[var(--foreground)]">
+          <p className="small-copy text-[0.92rem] text-[var(--foreground)]">
             {title}
           </p>
           <p className="small-copy">{location}</p>

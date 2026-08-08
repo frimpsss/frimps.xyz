@@ -1,7 +1,7 @@
 .markdown {
   color: var(--foreground);
-  font-size: 1.02rem;
-  line-height: 1.95;
+  font-size: 0.95rem;
+  line-height: 1.85;
 }
 
 .markdown > *:first-child {
@@ -20,25 +20,25 @@
 .markdown h6 {
   margin-top: 3rem;
   margin-bottom: 1rem;
-  line-height: 1.05;
-  letter-spacing: -0.05em;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
 }
 
 .markdown h1 {
-  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  font-size: clamp(1.85rem, 4vw, 2.7rem);
 }
 
 .markdown h2 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(1.45rem, 3vw, 1.95rem);
 }
 
 .markdown h3 {
-  font-size: 1.55rem;
+  font-size: 1.25rem;
 }
 
 .markdown h4 {
-  font-size: 1.25rem;
-  letter-spacing: -0.03em;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
 }
 
 .markdown p,
@@ -92,7 +92,7 @@
   font-family:
     "SFMono-Regular", "SFMono", "Menlo", "Monaco", "Consolas",
     "Liberation Mono", "Courier New", monospace;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
 }
 
 .markdown pre {

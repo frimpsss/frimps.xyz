@@ -15,10 +15,9 @@ export const metadata: Metadata = createPageMetadata({
 const page = () => {
   return (
     <AppLayout>
-      <div className="stagger space-y-12">
+      <div className="space-y-12">
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end">
           <div className="space-y-4">
-            <p className="section-eyebrow">doings</p>
             <h1 className="section-title max-w-[12ch]">
               what i am doing now and what i have done so far.
             </h1>

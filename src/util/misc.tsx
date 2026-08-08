@@ -1,17 +1,32 @@
 import { props as IFeaturedWork } from "@/components/ui/featured_work";
 import { LinkComponent } from "@/components/ui/link";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  MailIcon,
+  XIcon,
+} from "@/components/ui/icons";
+
 export const links = [
   {
     title: "github",
     link: "https://github.com/frimpsss",
+    Icon: GithubIcon,
   },
   {
     title: "linkedin",
     link: "https://www.linkedin.com/in/akwasi-frimpong/",
+    Icon: LinkedinIcon,
   },
   {
     title: "x.com",
     link: "https://twitter.com/akfrimpss",
+    Icon: XIcon,
+  },
+  {
+    title: "mail",
+    link: "mailto:hey@frimps.xyz",
+    Icon: MailIcon,
   },
 ];
 
@@ -125,9 +140,9 @@ export const works = [
   {
     title: "Software Engineer",
     link: "https://www.wi-flix.com",
-    company: "Wi-flix Africa",
+    company: "Wi-flix BV",
     location: "Remote",
-    dates: "July 2024 - Present",
+    dates: "July 2025 - Present",
     summary:
       "Leading frontend work on an OTT platform across web, TV, and mobile, shaping the frontend architecture, reusable UI system, playback and discovery flows, and performance work across different devices, CDNs, and network conditions.",
   },

@@ -22,10 +22,9 @@ const page = async () => {
 
   return (
     <AppLayout>
-      <div className="stagger space-y-12">
+      <div className="space-y-12">
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end">
           <div className="space-y-4">
-            <p className="section-eyebrow">notes</p>
             <h1 className="section-title max-w-[12ch]">
               notes on engineering, experiments, and whatever sticks.
             </h1>
@@ -56,14 +55,14 @@ const page = async () => {
                         <p className="section-eyebrow">
                           {getFrontmatterLabel(blog.frontmatter.type)}
                         </p>
-                        <h2 className="text-[1.6rem] leading-none tracking-[-0.05em]">
+                        <h2 className="text-[1.3rem] leading-tight tracking-[-0.04em]">
                           {blog.frontmatter.title}
                         </h2>
                         <p className="small-copy max-w-[42rem]">
                           {blog.frontmatter.subject}
                         </p>
                       </div>
-                      <div className="space-y-1 text-[0.78rem] uppercase tracking-[0.04em] text-[var(--muted)] md:pt-1 md:text-right">
+                      <div className="space-y-1 text-[0.72rem] uppercase tracking-[0.04em] text-[var(--muted)] md:pt-1 md:text-right">
                         <p>{formatFrontmatterDate(blog.frontmatter.date)}</p>
                         <p>{formatReadTime(blog.readTime)}</p>
                       </div>

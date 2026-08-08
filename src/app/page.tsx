@@ -58,10 +58,9 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
-      <div className="stagger space-y-14 md:space-y-20">
+      <div className="space-y-14 md:space-y-20">
         <section className="grid gap-8 md:gap-12 xl:grid-cols-[minmax(0,1.45fr)_320px]">
           <div className="space-y-8">
-            <p className="section-eyebrow">software engineer / ghana</p>
 
             <div className="space-y-6">
               <h1 className="page-title max-w-[11ch] sm:max-w-[12ch]">
@@ -75,14 +74,14 @@ export default function Home() {
                 <p>
                   i like staying close to the whole thing, from direction to
                   implementation to shipping, especially across{" "}
-                  <span className="text-[var(--foreground)]">fintech</span>,{" "}
-                  <span className="text-[var(--foreground)]">accounting</span>,{" "}
+                  <span className="text-[var(--foreground)]">finance</span>,{" "}
+                  <span className="text-[var(--foreground)]">business automation</span>,{" "}
                   <span className="text-[var(--foreground)]">
-                    digital lending
+                    logistics
                   </span>
                   ,{" "}
                   <span className="text-[var(--foreground)]">
-                    OTT and streaming
+                   streaming services
                   </span>
                   , and{" "}
                   <span className="text-[var(--foreground)]">
@@ -93,46 +92,24 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              {links.map(({ link, title }) => {
+            <div className="flex flex-wrap items-center gap-x-1 gap-y-2">
+              {links.map(({ link, title, Icon }) => {
                 return (
                   <LinkComponent
                     key={title}
                     link={link}
                     title={title}
-                    extraStyles="inline-link py-2 text-[0.82rem] uppercase tracking-[0.18em]"
-                  />
+                    extraStyles="icon-link"
+                  >
+                    <Icon />
+                  </LinkComponent>
                 );
               })}
               <LinkComponent
-                title="hire me / cv"
+                title="hire me"
                 link="https://docs.google.com/document/d/13S3a5qQdgMT4NbVjqcHTxtm2UbIgoUONvvBYwwt1PrU/edit?usp=sharing"
-                extraStyles="bg-[color:var(--foreground)] px-4 py-2 text-[0.82rem] uppercase tracking-[0.18em] text-[#f5f5f1] hover:text-[#f5f5f1]"
+                extraStyles="inline-link ml-3 py-2 text-[0.74rem] uppercase tracking-[0.18em]"
               />
-            </div>
-
-            <div className="grid gap-10 border-t border-[color:var(--line)] pt-8 md:grid-cols-2 md:gap-12">
-              <div className="max-w-[28rem] space-y-4">
-                <p className="section-eyebrow">currently</p>
-                <p className="text-[clamp(1.2rem,2vw,1.45rem)] leading-[1.18] tracking-[-0.05em] text-[var(--foreground)]">
-                  at access 89, i work across product, systems, and
-                  implementation.
-                </p>
-              </div>
-              <div className="max-w-[28rem] space-y-4">
-                <p className="section-eyebrow">next up</p>
-                <p className="text-[clamp(1.2rem,2vw,1.45rem)] leading-[1.35] tracking-[-0.05em] text-[var(--muted)]">
-                  open to selective freelance and collaborative product work.
-                  you can also head to{" "}
-                  <Link
-                    href="/writings"
-                    className="inline-link border-[color:var(--line-strong)] text-[var(--foreground)]"
-                  >
-                    notes
-                  </Link>{" "}
-                  for notes and experiments.
-                </p>
-              </div>
             </div>
           </div>
 
@@ -149,11 +126,11 @@ export default function Home() {
             <div className="mt-6 flex items-start justify-between gap-6 border-t border-[color:var(--line)] pt-5">
               <div>
                 <p className="section-eyebrow">base</p>
-                <p className="mt-2 text-[1.2rem] tracking-[-0.04em]">🇬🇭</p>
+                <p className="mt-2 text-[1.05rem] tracking-[-0.03em]">🇬🇭</p>
               </div>
               <div className="text-right">
                 <p className="section-eyebrow">focus</p>
-                <p className="mt-2 text-[1.2rem] tracking-[-0.04em]">
+                <p className="mt-2 text-[1.05rem] tracking-[-0.03em]">
                   engineering & product
                 </p>
               </div>
@@ -164,7 +141,6 @@ export default function Home() {
         <section className="space-y-8">
           <div className="grid gap-5 border-t border-[color:var(--line)] pt-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
             <div className="space-y-4">
-              <p className="section-eyebrow">selected work</p>
               <h2 className="section-title max-w-[14ch]">
                 a few things i helped shape and ship.
               </h2>

@@ -1,42 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Sora } from "next/font/google";
 import { defaultKeywords, defaultOgImage, siteConfig } from "@/util/site";
 import "./globals.css";
 
-const bagoss = localFont({
-  src: [
-    {
-      path: "../../public/assets/fonts/BagossStandardTRIAL-Thin.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../../public/assets/fonts/BagossStandardTRIAL-Light.ttf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/assets/fonts/BagossStandardTRIAL-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/assets/fonts/BagossStandardTRIAL-Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../public/assets/fonts/BagossStandardTRIAL-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/assets/fonts/BagossStandardTRIAL-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-bagoss",
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-sora",
   display: "swap",
 });
 
@@ -99,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={bagoss.variable}>
+    <html lang="en" className={sora.variable}>
       <body>{children}</body>
     </html>
   );

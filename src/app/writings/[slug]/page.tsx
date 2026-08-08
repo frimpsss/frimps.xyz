@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 import {
   formatFrontmatterDate,
   formatReadTime,
@@ -83,20 +84,18 @@ const page = async ({ params }: { params: { slug: string } }) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
       />
-      <div className="stagger space-y-10">
+      <Link
+        href="/writings"
+        className="inline-flex items-center gap-1.5 text-[0.74rem] tracking-[0.2em] text-[var(--muted)] transition-colors duration-200 hover:text-[var(--foreground)]"
+      >
+        <ArrowLongLeftIcon className="h-4 w-4" aria-hidden="true" />
+        back
+      </Link>
+      <div className="space-y-10">
         <section className="space-y-8">
-          <Link
-            href="/writings"
-            className="inline-link text-[0.8rem] uppercase tracking-[0.2em] text-[var(--muted)]"
-          >
-            back to notes
-          </Link>
+          <div className="grid gap-6 pt-8 lg:grid-cols-[minmax(0,1fr)_180px] lg:items-start">
 
-          <div className="grid gap-6 border-t border-[color:var(--line)] pt-8 lg:grid-cols-[minmax(0,1fr)_180px] lg:items-start">
             <div className="space-y-5">
-              <p className="section-eyebrow">
-                {getFrontmatterLabel(blog.frontmatter.type)}
-              </p>
               <div className="space-y-4">
                 <h1 className="section-title max-w-[16ch]">
                   {blog.frontmatter.title}
@@ -106,7 +105,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
                 </p>
               </div>
             </div>
-            <div className="space-y-1 text-[0.78rem] uppercase tracking-[0.04em] text-[var(--muted)] lg:pt-2 lg:text-right">
+            <div className="space-y-1 text-[0.72rem] uppercase tracking-[0.04em] text-[var(--muted)] lg:pt-2 lg:text-right">
               <p>{formatFrontmatterDate(blog.frontmatter.date)}</p>
               <p>{formatReadTime(blog.readTime)}</p>
             </div>
