@@ -155,6 +155,32 @@ img {
   height: 1.05rem;
 }
 
+/* same box height as .icon-link so glyphs and icons share a centre line.
+   underline is text-decoration, not a border, so it adds no box height. */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  height: 2.1rem;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.45em;
+  transition:
+    color 220ms ease,
+    text-decoration-color 220ms ease;
+}
+
+.text-link:hover {
+  color: var(--foreground);
+  text-decoration-color: var(--foreground);
+}
+
 .nav-link {
   position: relative;
   padding-bottom: 0.08rem;

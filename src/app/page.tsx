@@ -108,7 +108,7 @@ export default function Home() {
               <LinkComponent
                 title="hire me"
                 link="https://docs.google.com/document/d/13S3a5qQdgMT4NbVjqcHTxtm2UbIgoUONvvBYwwt1PrU/edit?usp=sharing"
-                extraStyles="inline-link ml-3 py-2 text-[0.74rem] uppercase tracking-[0.18em]"
+                extraStyles="text-link ml-3"
               />
             </div>
           </div>
