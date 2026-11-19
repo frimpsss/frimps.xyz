@@ -14,6 +14,8 @@ import { absoluteUrl, createPageMetadata, siteConfig } from "@/util/site";
 import styles from "../../md.module.css";
 import AppLayout from "@/components/layouts/layout.main";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllBlogSlug();
 }
